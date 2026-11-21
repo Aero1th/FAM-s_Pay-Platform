@@ -3,6 +3,8 @@ import './App.css';
 import logoImage from './assets/logo.png';
 import AuthPage from './pages/AuthPage';
 import Dashboard from './pages/Dashboard';
+import ComplaintsTab from './pages/ComplaintsTab';
+import PayAdjustmentsTab from './pages/PayAdjustmentsTab';
 
 export default function App() {
   const [currentUser, setCurrentUser] = useState(null);
@@ -126,31 +128,56 @@ export default function App() {
 
         <div className="nav-controls">
           <button
+            className={`nav-btn ${activeTab === 'complaints' ? 'active' : ''}`}
+            onClick={() => setActiveTab('complaints')}
+          >
+            Complaints & Reviews
+          </button>
+
+          <button
             className={`nav-btn ${activeTab === 'portal' ? 'active' : ''}`}
             onClick={() => setActiveTab('portal')}
           >
             My Earnings & Profile
           </button>
           {currentUser.role === 'admin' && (
-            <button
-              className={`nav-btn ${activeTab === 'admin' ? 'active' : ''}`}
-              onClick={() => setActiveTab('admin')}
-            >
-              HR Payroll Manager
-            </button>
+            <>
+              <button
+                className={`nav-btn ${activeTab === 'pay-adjustments' ? 'active' : ''}`}
+                onClick={() => setActiveTab('pay-adjustments')}
+              >
+                Payraise & Paycut
+              </button>
+              <button
+                className={`nav-btn ${activeTab === 'admin' ? 'active' : ''}`}
+                onClick={() => setActiveTab('admin')}
+              >
+                HR Payroll Manager
+              </button>
+            </>
           )}
           <button className="btn-logout" onClick={handleLogout}>Logout</button>
         </div>
       </header>
 
       {/* View Switcher */}
+
+      
       {activeTab === 'portal' ? (
         <Dashboard
           currentUser={currentUser}
           onUserUpdate={(updated) => {
-            setCurrentUser(updated);
-            fetchEmployees();
-          }}
+          setCurrentUser(updated);
+          fetchEmployees();
+        }}
+        />
+      ) : activeTab === 'complaints' ? (
+        <ComplaintsTab currentUser={currentUser} />
+      ) : activeTab === 'pay-adjustments' ? (
+        <PayAdjustmentsTab
+          currentUser={currentUser}
+          employees={employees}
+          onRefreshEmployees={fetchEmployees}
         />
       ) : (
         <>

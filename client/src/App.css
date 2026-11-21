@@ -692,3 +692,118 @@ body {
     grid-template-columns: 1fr;
   }
 }
+
+.complaints-layout {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.checkbox-row {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  color: #cbd5e1 !important;
+}
+
+.checkbox-row input[type="checkbox"] {
+  width: auto !important;
+  accent-color: #10b981;
+}
+
+.complaint-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.complaint-item {
+  background-color: #0b0f0e;
+  border: 1px solid #1f2923;
+  border-radius: 8px;
+  padding: 16px;
+}
+
+.complaint-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.complaint-subject {
+  color: #fff;
+  font-size: 16px;
+}
+
+.complaint-meta {
+  font-size: 12px;
+  color: #94a3b8;
+  margin-top: 4px;
+}
+
+.complaint-message {
+  color: #cbd5e1;
+  font-size: 14px;
+  line-height: 1.5;
+  margin: 12px 0;
+}
+
+.admin-reply-box {
+  background-color: rgba(6, 78, 59, 0.35);
+  border-left: 3px solid #10b981;
+  padding: 10px 12px;
+  border-radius: 4px;
+  font-size: 13px;
+  color: #d1fae5;
+  margin-top: 10px;
+}
+
+.admin-review-controls {
+  display: flex;
+  gap: 8px;
+  margin-top: 12px;
+  flex-wrap: wrap;
+}
+
+.admin-review-controls input {
+  flex: 1;
+  min-width: 200px;
+  padding: 7px 10px;
+  border-radius: 6px;
+  border: 1px solid #27352d;
+  background-color: #1a231f;
+  color: #fff;
+  font-size: 13px;
+}
+
+.requirement-box {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  background-color: #0b0f0e;
+  border: 1px solid #1f2923;
+  border-radius: 8px;
+  padding: 12px 14px;
+  color: #cbd5e1;
+  font-size: 13px;
+  flex-wrap: wrap;
+}
+
+.error-banner {
+  background-color: rgba(127, 29, 29, 0.45);
+  border: 1px solid #ef4444;
+  color: #fecaca;
+  padding: 10px 14px;
+  border-radius: 8px;
+  margin-bottom: 16px;
+  font-size: 14px;
+}
+
+.muted-delta {
+  color: #94a3b8;
+  font-size: 12px;
+}

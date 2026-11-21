@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 
+const DEFAULT_AVATAR = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTXI5UEbkacjL3jxlp8sYB3Bd6qlfR7vSGAWGBMsOicuR3vz5WfaiUYxQBs&s=10';
+
 export default function Dashboard({ currentUser, onUserUpdate }) {
   const [profileForm, setProfileForm] = useState({
     name: currentUser.name || '',
     department: currentUser.department || 'Software Engineering',
-    avatar: currentUser.profile?.avatar || '',
+    avatar: currentUser.profile?.avatar || DEFAULT_AVATAR,
     bio: currentUser.profile?.bio || '',
     phone: currentUser.profile?.phone || '',
     skills: currentUser.profile?.skills || ''
@@ -22,7 +24,7 @@ export default function Dashboard({ currentUser, onUserUpdate }) {
         name: profileForm.name,
         department: profileForm.department,
         profile: {
-          avatar: profileForm.avatar,
+          avatar: profileForm.avatar.trim() || DEFAULT_AVATAR,
           bio: profileForm.bio,
           phone: profileForm.phone,
           skills: profileForm.skills
@@ -79,11 +81,12 @@ export default function Dashboard({ currentUser, onUserUpdate }) {
         {/* Live Profile Preview Card */}
         <div className="card profile-preview-card">
           <div className="avatar-circle">
-            {profileForm.avatar ? (
-              <img src={profileForm.avatar} alt="Avatar" className="avatar-img" />
-            ) : (
-              <span>{profileForm.name.charAt(0).toUpperCase()}</span>
-            )}
+            <img
+              src={profileForm.avatar || DEFAULT_AVATAR}
+              alt="Avatar"
+              className="avatar-img"
+              onError={(e) => { e.target.src = DEFAULT_AVATAR; }}
+            />
           </div>
           <h3 className="profile-name">{profileForm.name}</h3>
           <span className="badge badge-active">{currentUser.status}</span>
